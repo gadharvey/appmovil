@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>formproducto</ion-title>
+    
+    <ion-button slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="formulario" (ngSubmit)="add()">
+    <ion-input formControlName="name" label="Nombre" type="text" labelPlacement="floating" fill="solid" placeholder="Ingrese nombre de producto"></ion-input>
+    <ion-input formControlName="stock" label="Stock" type="number" labelPlacement="floating" fill="solid" placeholder="Ingrese cantidad"></ion-input>
+    
+  
+    <ion-button type="submit ">Registrar</ion-button>
+    <ion-button [routerLink]="['/home']">ver Productos</ion-button>
+  </form>
+</ion-content>

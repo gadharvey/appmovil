@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agregar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+    
+  
+  
+  <ion-button [routerLink]="['/formproducto']">Agregar</ion-button>
+  
+  <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+
+  <!-- Itera sobre la lista de productos y muestra un ion-card por cada producto -->
+  <ion-card *ngFor="let item of productos; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{item.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle>Stock: {{item.stock}}</ion-card-subtitle>
+      <!-- Botón de Editar -->
+      <ion-button [routerLink]="['/editar', i]">Editar</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

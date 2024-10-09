@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <ion-input formControlName="email" label="Correo electronico" type="email" labelPlacement="floating" fill="solid" placeholder="Ingrese su correo electronico"></ion-input>
+    <ion-input formControlName="password" label="Contraseña" type="password" labelPlacement="floating" fill="solid" placeholder="Ingrese su contraseña"></ion-input>
+  
+    <ion-button type="submit ">Ingresar</ion-button>
+  </form>
+  <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+
+  <ion-button (click)="loginWithGoogle()">Registrarse o Ingresa con Google</ion-button>
+
+</ion-content>
