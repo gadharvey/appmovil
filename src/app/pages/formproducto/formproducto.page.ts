@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder,FormGroup ,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AddService } from 'src/app/services/add.service';
+
 
 @Component({
   selector: 'app-formproducto',
@@ -9,7 +11,7 @@ import { AddService } from 'src/app/services/add.service';
 })
 export class FormproductoPage implements OnInit {
 
-  constructor(private formbuilder: FormBuilder, private addservices: AddService) { }
+  constructor(private formbuilder: FormBuilder, private addservices: AddService,private router: Router) { }
 
   // Define el formulario usando FormBuilder
   formulario = this.formbuilder.group({
@@ -27,7 +29,10 @@ export class FormproductoPage implements OnInit {
 
     // Llama al servicio para agregar el producto
     await this.addservices.add({ nombre: name, stock: parseInt(stock) });
+    
   }
+
+  
 
 
 

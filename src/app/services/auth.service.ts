@@ -37,7 +37,8 @@ export class  AuthService {
   async loginWithGoogle(){
     const provider = new GoogleAuthProvider(); // Proveedor de autenticación de Google
 
-    const user = await signInWithPopup(this.auth,provider); // Inicia sesión 
+    const user = await signInWithPopup(this.auth,provider); // Inicia sesión
+    //cuando el usuario inicia sesion con exito devolvera el objeto user
     return user;
   } 
 

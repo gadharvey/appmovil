@@ -4,23 +4,24 @@ import { Router } from '@angular/router';
 import { AddService, Producto } from 'src/app/services/add.service'; // Servicio para manejar productos
 import { AuthService } from 'src/app/services/auth.service'; // Servicio para manejar la autenticación
 
-@Component({  
+@Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService, private addService: AddService) { }  
+  constructor(private router: Router, private authService: AuthService, private addService: AddService) { }
 
-  productos: Producto[] = [];
+  
+  productos: any;
 
   // Método para que se inicialice el componente
   async ngOnInit() {
     await this.mostrar(); // Llama al método mostrar para cargar los productos
   }
 
-  
+
 
   // Método para cerrar sesión
   async logout() {
@@ -39,16 +40,33 @@ export class HomePage implements OnInit {
 
   //editar
 
-  editarProducto(id: string | undefined) {
+  editarProducto(id: string , ) {
     if (id) {
-      this.router.navigate(['/editarproducto', id]); // Solo navega si el id no es undefined
+      this.router.navigate(['/editar'], {
+        queryParams: {
+          id
+        }
+      }); // Solo navega si el id no es undefined
     } else {
       console.error("El ID del producto es undefined.");
     }
   }
-  
 
-  
-  
+  //borrar
+
+  borrarProducto(id: string  ) {
+    // Llama al servicio para borrar el producto con el ID proporcionado
+    this.addService.borrarProducto(id).then(() => {
+      // Si la eliminación es exitosa, se imprime un mensaje en la consola
+      console.log('Producto eliminado con éxito');
+
+      // Llama al método mostrar() para recargar la lista de productos después de la eliminación
+      this.mostrar(); 
+    }).catch(error => {
+      console.error('Error al eliminar el producto: ', error);
+    });
+  }
+
+
   
 }

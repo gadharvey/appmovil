@@ -1,18 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <form [formGroup]="form" (ngSubmit)="login()">
-    <ion-input formControlName="email" label="Correo electronico" type="email" labelPlacement="floating" fill="solid" placeholder="Ingrese su correo electronico"></ion-input>
+<ion-content [fullscreen]="true" class="ion-padding login-content">
+  
+  
+  <div class="logo-container">
+    <ion-img src="assets/logo.png" class="logo"></ion-img> 
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
+    
+    
+    <ion-input formControlName="email" label="Correo electrónico" type="email" labelPlacement="floating" fill="solid" placeholder="Ingrese su correo electrónico"></ion-input>
     <ion-input formControlName="password" label="Contraseña" type="password" labelPlacement="floating" fill="solid" placeholder="Ingrese su contraseña"></ion-input>
   
-    <ion-button type="submit ">Ingresar</ion-button>
+    
+    <ion-button type="submit" expand="block" class="login-button">Ingresar</ion-button>
   </form>
-  <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+  
+  
+  <ion-button expand="block" [routerLink]="['/register']" class="register-button">Registrarse</ion-button>
 
-  <ion-button (click)="loginWithGoogle()">Registrarse o Ingresa con Google</ion-button>
+  
+  <ion-button expand="block" (click)="loginWithGoogle()" class="google-button">
+    <ion-icon name="logo-google" slot="start"></ion-icon>
+    Registrarse o Ingresar con Google
+  </ion-button>
 
 </ion-content>

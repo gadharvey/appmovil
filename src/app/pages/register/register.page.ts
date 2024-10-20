@@ -23,7 +23,7 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  // Función asíncrona para manejar el registro de un nuevo usuario
+  // Función asíncrona que manejar el registro de un nuevo usuario
   async register() {
     if (this.form.invalid) return // Verifica si el formulario es inválido, si no hace nada
     const { email, password, name } = this.form.value; // Extrae los valores del formulario

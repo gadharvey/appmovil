@@ -1,13 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Editar Producto</ion-title>
+    <ion-button slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-img src="assets/logo.png" class="logo"></ion-img>
+
   <form [formGroup]="formulario" (ngSubmit)="actualizar()">
     <ion-input formControlName="nombre" label="Nombre" type="text" labelPlacement="floating" fill="solid" placeholder="Nombre del producto"></ion-input>
     <ion-input formControlName="stock" label="Stock" type="number" labelPlacement="floating" fill="solid" placeholder="Stock del producto"></ion-input>
+    
     <ion-button type="submit">Actualizar</ion-button>
   </form>
 </ion-content>

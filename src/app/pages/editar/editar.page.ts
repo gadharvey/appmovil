@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddService, Producto } from 'src/app/services/add.service';
+import { AddService } from 'src/app/services/add.service';
 
 @Component({
   selector: 'app-editar',
@@ -11,9 +11,9 @@ import { AddService, Producto } from 'src/app/services/add.service';
 export class EditarPage implements OnInit {
 
   productoId: string | undefined;  // Variable para almacenar el ID del producto
-  
+
   constructor(
-    private route: ActivatedRoute,
+    private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private addService: AddService,
     private router: Router
@@ -21,62 +21,36 @@ export class EditarPage implements OnInit {
 
   formulario = this.formBuilder.group({
     nombre: this.formBuilder.control("", [Validators.required]),
-    stock: this.formBuilder.control("", [Validators.required]) // Ajusta el tipo de stock a número
+    stock: this.formBuilder.control("", [Validators.required]) 
   });
-  
+
 
   async ngOnInit() {
-    this.productoId = this.route.snapshot.paramMap.get('id')??undefined; // Obtiene la ID del producto desde la ruta
-    if (this.productoId) {
-      const producto = await this.addService.obtenerProductoPorId(this.productoId);
-      if (producto) {
-        this.formulario.setValue({
-          nombre: producto.nombre,
-          stock: producto.stock.toString(),
-        });
+    this.activateRoute.queryParams.subscribe(param => {
+      // Verifica si existe un parámetro de consulta llamado "id"
+      if (param["id"]) {
+        // Si "id" existe, se asigna su valor a la propiedad productoId
+        this.productoId = param["id"]
       }
-    }
+    })
+
+
   }
 
-  // Método para actualizar el producto
   async actualizar() {
     if (this.formulario.invalid) return;
-    const { nombre, stock } = this.formulario.value;
+    const { nombre, stock } = this.formulario.value;  // Desestructura los valores del formulario
     if (!nombre || !stock) return;
+    if (!this.productoId) return
 
-    if (this.productoId) {
-      await this.addService.actualizarProducto(this.productoId, {
-        nombre: nombre,
-        stock: parseInt(stock),
-      });
-      this.router.navigate(['/home']); // Redirige a la página de inicio después de la actualización
-    }
-  }
 
-  // Método para guardar los cambios del producto editado
-  async editarProducto() {
-    if (this.formulario.invalid) return;
-
-    const { nombre, stock } = this.formulario.value;
-
-    if (!nombre || !stock) return;
-
-    // Convertir el valor del stock a número
-    const stockNumber = parseInt(stock as string, 10);
-
-    if (isNaN(stockNumber)) {
-      console.error("El stock debe ser un número válido.");
-      return;
-    }
-
-    // Actualizar el producto con los datos nuevos
-    await this.addService.actualizarProducto(this.productoId!, {
-      nombre: nombre as string,
-      stock: stockNumber  // Asigna el valor numérico convertido
+    // Llama al servicio para actualizar el producto con el ID y los nuevos datos
+    await this.addService.actualizarProducto(this.productoId, {
+      nombre: nombre,
+      stock: parseInt(stock),
     });
-
-    // Navegar de vuelta a la página de productos
-    this.router.navigateByUrl('/home');
+    this.formulario.reset()
+    this.router.navigate(['/home']); // Redirige a la página de inicio después de la actualización
   }
-
+  
 }

@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from "@angular/router";
 import { map } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 
-//el auth guard se utiliza para que solo los usuarios autenticados puedan acceder a la página de agregar
+
 // Define la guardia de autenticación como una función que retorna una función de activación
 export const AuthGuard = (): CanActivateFn =>{
 

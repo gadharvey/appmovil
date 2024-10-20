@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   }
 
    // Método para hacer login
-   
+  
   async login() {
     if (this.form.invalid) return // Si el formulario es invalido,no se hace nada
     const { email, password } = this.form.value; // Obtenemos los valores del formulario

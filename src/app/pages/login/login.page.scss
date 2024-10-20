@@ -1,0 +1,49 @@
+.login-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    max-width: 150px;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  ion-input {
+    margin-bottom: 20px;
+  }
+  
+  .login-button, .register-button, .google-button {
+    margin-top: 10px;
+  }
+  
+  .login-button {
+    --background: #3880ff;
+  }
+  
+  .register-button {
+    --background: #10dc60;
+  }
+  
+  .google-button {
+    --background: #db4437;
+    --color: white;
+  }
+  
+  .google-button ion-icon {
+    margin-right: 8px;
+  }
+  

@@ -1,0 +1,40 @@
+.register-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    max-width: 150px;
+  }
+  
+  .register-form {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  ion-input {
+    margin-bottom: 20px;
+  }
+  
+  .register-button, .login-button {
+    margin-top: 10px;
+  }
+  
+  .register-button {
+    --background: #10dc60;
+  }
+  
+  .login-button {
+    --background: #3880ff;
+  }
+  
